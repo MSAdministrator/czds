@@ -1,0 +1,18 @@
+{
+  "_copy_without_render": [
+    ".github/workflows/tests.yml",
+    ".github/workflows/distribute.yml"
+  ],
+  "_output_dir": "/Users/voltron/_GitHub",
+  "_template": "gh:MSAdministrator/cookiecutter-hypermodern-python",
+  "author": "Josh Rickard",
+  "copyright_year": "2023",
+  "development_status": "Development Status :: 3 - Alpha",
+  "email": "rickardja@live.com",
+  "friendly_name": "CZDS",
+  "github_user": "MSAdministrator",
+  "license": "MIT",
+  "package_name": "czds",
+  "project_name": "czds",
+  "version": "0.0.1"
+}
