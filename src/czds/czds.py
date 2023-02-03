@@ -9,9 +9,9 @@ from .connector import CZDSConnector
 
 class CZDS(Base):
     """Main class for ICAAN CZDS."""
-    
+
     links: List[str] = []
-    
+
     def __init__(self, username: AnyStr, password: AnyStr, save_directory: AnyStr) -> None:
         """Sets the username and password for API authentication.
 
@@ -24,7 +24,7 @@ class CZDS(Base):
         Base.PASSWORD = password
         Base.SAVE_PATH = save_directory
         self.connection = CZDSConnector()
-        
+
     def list_links(self) -> List[str]:
         """Returns a list of all CZDS Zone Link urls.
 
@@ -36,17 +36,17 @@ class CZDS(Base):
         return self.links
 
     def get_zone(self, link: AnyStr = None) -> AnyStr or List[Dict[str, str]]:
-        """Retrieves all or a single CZDS Zone File. 
-        
+        """Retrieves all or a single CZDS Zone File.
+
         If you DO NOT provide a link, we will retrieve all available link files from your account and return them.
-    
+
         Args:
-            link (AnyStr, optional): A CZDS Zone Link URL. Defaults to None.
+            link (AnyStr): A CZDS Zone Link URL. Defaults to None.
 
         Returns:
             AnyStr or List[Dict[str, str]]: _description_
         """
-        return_list: List[Dict[str,str]] = []
+        return_list: List[Dict[str, str]] = []
         if link:
             return_list.append(self.connection._get(url=link))
         else:

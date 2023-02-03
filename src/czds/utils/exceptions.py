@@ -1,4 +1,5 @@
-"""czds.utils.exceptions"""
+"""czds.utils.exceptions."""
+
 
 class CustomExceptionError(Exception):
     """Raised when an error is encountered."""

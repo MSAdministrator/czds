@@ -68,9 +68,9 @@ class DebugFileHandler(FileHandler):
 
         Args:
             filename (str): The filename to log to.
-            mode (str, optional): The mode to open the file. Defaults to "a".
+            mode (str): The mode to open the file. Defaults to "a".
             encoding (str, optional): The encoding to use. Defaults to None.
-            delay (bool, optional): Delay writing to log file. Defaults to False.
+            delay (bool): Delay writing to log file. Defaults to False.
         """
         super().__init__(filename, mode, encoding, delay)
 

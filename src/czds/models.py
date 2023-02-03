@@ -7,6 +7,7 @@ from attrs import define
 @define
 class ZoneData:
     """Data model for each zone data element."""
+
     zone_name: AnyStr
     dns_record: AnyStr
     ttl: AnyStr

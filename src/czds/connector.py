@@ -2,12 +2,11 @@
 import cgi
 import json
 import os
+from typing import AnyStr
+from typing import List
 
 import requests
 from requests import Response
-
-from typing import AnyStr
-from typing import List
 
 from .base import Base
 
@@ -20,10 +19,7 @@ class CZDSConnector(Base):
 
     def __init__(self) -> None:
         """Creates a credential property and retrieves our access token from authenticationself."""
-        self.credential: dict = {
-            "username": Base.USERNAME,
-            "password": Base.PASSWORD
-        }
+        self.credential: dict = {"username": Base.USERNAME, "password": Base.PASSWORD}
         self.token = self.get_token()
 
     def get_token(self) -> AnyStr:
@@ -61,12 +57,10 @@ class CZDSConnector(Base):
             url (AnyStr): The URL to make the request against.
 
         Returns:
-            Reponse: A requests.Response object. 
+            Response: A requests.Response object.
         """
         headers = Base.BASE_HEADERS
-        headers.update({
-            "Authorization": f"Bearer {self.token}"
-        })
+        headers.update({"Authorization": f"Bearer {self.token}"})
         self.__logger.debug(f"Making request to '{url}'.")
         return requests.get(url, params=None, headers=headers, stream=True)
 
@@ -103,17 +97,17 @@ class CZDSConnector(Base):
         status_code = response.status_code
 
         if status_code == 200:
-            zone_name = zone_file_link.rsplit('/', 1)[-1].rsplit('.')[-2]
+            zone_name = zone_file_link.rsplit("/", 1)[-1].rsplit(".")[-2]
 
             # Try to get the filename from the header
-            _,option = cgi.parse_header(response.headers['content-disposition'])
-            filename = option['filename']
+            _, option = cgi.parse_header(response.headers["content-disposition"])
+            filename = option["filename"]
 
             # If could get a filename from the header, then makeup one like [tld].txt.gz
             if not filename:
-                filename = zone_name + '.txt'
+                filename = zone_name + ".txt"
             path = os.path.join(Base.SAVE_PATH, filename)
-            with open(path, 'wb') as f:
+            with open(path, "wb") as f:
                 for chunk in response.raw.stream(1024, decode_content=False):
                     if chunk:
                         f.write(chunk)
