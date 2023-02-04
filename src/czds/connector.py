@@ -121,16 +121,22 @@ class CZDSConnector(Base):
         else:
             self.__logger.critical(f"Failed to download zone from '{zone_file_link}' with code {status_code}\n")
 
-    def download(self, zone_file_link: AnyStr) -> AnyStr:
+    def download(self, zone_file_list: AnyStr or List[AnyStr]) -> AnyStr:
         """Main method used to download zone files.
 
         Args:
-            zone_file_link (AnyStr): A zone file to download.
+            zone_file_link (AnyStr): One or more zone file(s) to download.
 
         Returns:
-            AnyStr: The path that the zone file was saved to.
+            AnyStr or List[AnyStr]: The path that the zone file was saved to.
         """
         if Base.SAVE_PATH:
             if not os.path.exists(Base.SAVE_PATH):
                 os.makedirs(Base.SAVE_PATH)
-        return self._download_single_zone_file(zone_file_link=zone_file_link)
+        if isinstance(zone_file_list, list):
+            return [self._download_single_zone_file(zone_file_link=link) for link in zone_file_list]
+        elif isinstance(zone_file_list, str):
+            return self._download_single_zone_file(zone_file_link=zone_file_list)
+        else:
+            self.__logger.critical(f"Unable to download. Unknown data structure provided to this method. {zone_file_list}")
+            raise TypeError(f"Unknown data type. Should be 'list' or 'str'.")

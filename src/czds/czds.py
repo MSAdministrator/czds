@@ -35,13 +35,14 @@ class CZDS(Base):
             self.links = self.connection._get_zone_links()
         return self.links
 
-    def get_zone(self, link: AnyStr = None) -> AnyStr or List[Dict[str, str]]:
+    def get_zone(self, link: AnyStr = None, threaded: bool = False) -> AnyStr or List[Dict[str, str]]:
         """Retrieves all or a single CZDS Zone File.
 
         If you DO NOT provide a link, we will retrieve all available link files from your account and return them.
 
         Args:
             link (AnyStr): A CZDS Zone Link URL. Defaults to None.
+            threaded (bool): Whether or not to run multi-threaded.
 
         Returns:
             AnyStr or List[Dict[str, str]]: _description_
@@ -50,7 +51,10 @@ class CZDS(Base):
         if link:
             return_list.append(self.connection._get(url=link))
         else:
-            for link in self.list_links():
-                self.__logger.info(f"Downloading zone file from '{link}'.")
-                return_list.append(self.connection.download(zone_file_link=link))
+            if threaded:
+                return self.run_threaded(method=self.connection.download, list_data=self.list_links())
+            else:
+                for link in self.list_links():
+                    self.__logger.info(f"Downloading zone file from '{link}'.")
+                    return_list.append(self.connection.download(zone_file_link=link))
         return return_list
