@@ -5,6 +5,7 @@ class UnsupportedTypeError(TypeError):
     """Raised when the wrong type is provided."""
 
     def __init__(self, *args: object) -> None:
+        """Wrapper for TypeError exception class which passed arguments along to TypeError."""
         super().__init__(*args)
 
 

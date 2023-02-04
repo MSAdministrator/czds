@@ -145,4 +145,4 @@ class CZDSConnector(Base):
             self.__logger.critical(
                 f"Unable to download. Unknown data structure provided to this method. {zone_file_list}"
             )
-            raise UnsupportedTypeError(f"""Unknown data type. Should be 'list' or 'str'.""")
+            raise UnsupportedTypeError("""Unknown data type. Should be 'list' or 'str'.""")
