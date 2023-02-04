@@ -9,6 +9,7 @@ import requests
 from requests import Response
 
 from .base import Base
+from .utils.exceptions import UnsupportedTypeError
 
 
 class CZDSConnector(Base):
@@ -125,10 +126,13 @@ class CZDSConnector(Base):
         """Main method used to download zone files.
 
         Args:
-            zone_file_link (AnyStr): One or more zone file(s) to download.
+            zone_file_list (AnyStr): One or more zone file(s) to download.
+
+        Raises:
+            UnsupportedTypeError: Raised when a unsupported type is provided.
 
         Returns:
-            AnyStr or List[AnyStr]: The path that the zone file was saved to.
+            AnyStr: The path that the zone file was saved to.
         """
         if Base.SAVE_PATH:
             if not os.path.exists(Base.SAVE_PATH):
@@ -138,5 +142,7 @@ class CZDSConnector(Base):
         elif isinstance(zone_file_list, str):
             return self._download_single_zone_file(zone_file_link=zone_file_list)
         else:
-            self.__logger.critical(f"Unable to download. Unknown data structure provided to this method. {zone_file_list}")
-            raise TypeError(f"Unknown data type. Should be 'list' or 'str'.")
+            self.__logger.critical(
+                f"Unable to download. Unknown data structure provided to this method. {zone_file_list}"
+            )
+            raise UnsupportedTypeError(f"""Unknown data type. Should be 'list' or 'str'.""")
