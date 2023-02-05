@@ -1,13 +1,26 @@
 [tool.poetry]
 name = "czds"
 version = "0.0.1"
+packages = [
+    { include = "czds", from = "src" }
+]
+include = [
+    "src/czds/data/logging.yml"
+]
 description = "CZDS"
 authors = ["Josh Rickard <rickardja@live.com>"]
+maintainers = ["Josh Rickard <rickardja@live.com>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/MSAdministrator/czds"
 repository = "https://github.com/MSAdministrator/czds"
-documentation = "https://czds.readthedocs.io"
+documentation = ""
+keywords = [
+    "ICAAN",
+    "CZDS",
+    "DNS",
+    "Security"
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
 ]
@@ -54,6 +67,9 @@ myst-parser = {version = ">=0.16.1"}
 [tool.poetry.scripts]
 czds = "czds.__main__:main"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
 tests = ["tests", "*/tests"]
@@ -69,7 +85,7 @@ fail_under = 100
 [tool.commitizen]
 version = "0.0.1"
 version_files = [
-    "src/__init__.py",
+    "src/czds/__init__.py",
     "pyproject.toml:version"
 ]
 tag_format = "$major.$minor.$patch"

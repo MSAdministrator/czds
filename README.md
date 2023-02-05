@@ -31,6 +31,7 @@ Each registry operator keeps its zone data in a text file called the Zone File w
 
 - Retrieve Centralized Zone Transfer Files from root DNS servers hosted by ICAAN and other agencies
 - Download one or all of the zone files to your local system/disk
+- You can now retrieve zone files using multi-threading
 
 ## Requirements
 
@@ -54,6 +55,14 @@ Please see the [Command-line Reference] for details.
 Contributions are very welcome.
 To learn more, see the [Contributor Guide].
 
+## Developmemt
+
+If you are using `pyenv` to manage your enviroments you can set a config option in poetry to use the set pyenv version of python by running this:
+
+```bash
+poetry config virtualenvs.prefer-active-python true
+poetry install
+```
 ## License
 
 Distributed under the terms of the [MIT license][license],

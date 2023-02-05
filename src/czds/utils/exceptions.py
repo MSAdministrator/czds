@@ -1,4 +1,22 @@
 """czds.utils.exceptions."""
+from requests.exceptions import HTTPError
+
+
+class CZDSConnectionError(HTTPError):
+    """Base class for all requests HTTPErrors."""
+    
+    def __init__(self, status_code: int, name: str, http_error: HTTPError, *args, **kwargs) -> None:
+        """Base exception for CZDS HTTP requests.
+
+        Args:
+            status_code (int): The status code received from the request.
+            name (str): The name of the error.
+            http_error (HTTPError): The HTTP Error from the requests response.
+        """
+        from ..base import Base
+
+        Base().log(message=f"\n{name} Error Occurred.\nStatus Code: {status_code}\nError: {http_error}\n")
+        super().__init__(*args, **kwargs)
 
 
 class UnsupportedTypeError(TypeError):

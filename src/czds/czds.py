@@ -5,6 +5,7 @@ from typing import List
 
 from .base import Base
 from .connector import CZDSConnector
+from .utils.exceptions import CZDSConnectionError
 
 
 class CZDS(Base):
@@ -23,7 +24,6 @@ class CZDS(Base):
         Base.USERNAME = username
         Base.PASSWORD = password
         Base.SAVE_PATH = save_directory
-        self.connection = CZDSConnector()
 
     def list_links(self) -> List[str]:
         """Returns a list of all CZDS Zone Link urls.
@@ -31,6 +31,10 @@ class CZDS(Base):
         Returns:
             List[str]: A list CZDS Zone Link urls.
         """
+        try:
+            self.connection = CZDSConnector()
+        except CZDSConnectionError as cze:
+            raise cze
         if not self.links:
             self.links = self.connection._get_zone_links()
         return self.links
@@ -48,6 +52,10 @@ class CZDS(Base):
             AnyStr or List[Dict[str, str]]: _description_
         """
         return_list: List[Dict[str, str]] = []
+        try:
+            self.connection = CZDSConnector()
+        except CZDSConnectionError as cze:
+            raise cze
         if link:
             return_list.append(self.connection._get(url=link))
         else:

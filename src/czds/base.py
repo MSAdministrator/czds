@@ -3,6 +3,7 @@
 This Base class inherits from our LoggingBase metaclass and gives us
 shared logging across any class inheriting from Base.
 """
+import inspect
 import os
 from typing import Any
 from typing import AnyStr
@@ -72,3 +73,20 @@ class Base(metaclass=LoggingBase):
                 count += 1
                 self.__logger.info(f"Retrieved results from {count} threads.")
         return return_list
+
+    def log(self, message: AnyStr, level: AnyStr = "info") -> None:
+        """Used to centralize logging across components.
+
+        We identify the source of the logging class by inspecting the calling stack.
+
+        Args:
+            message (str): The log value string to output.
+            level (str, optional): The log level. Defaults to "info".
+        """
+        component = None
+        parent = inspect.stack()[1][0].f_locals.get("self", None)
+        component = parent.__class__.__name__
+        try:
+            getattr(getattr(parent, f"_{component}__logger"), level)(message)
+        except AttributeError as ae:
+            getattr(self.__logger, level)(message + ae)
