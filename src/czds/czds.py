@@ -28,6 +28,9 @@ class CZDS(Base):
     def list_links(self) -> List[str]:
         """Returns a list of all CZDS Zone Link urls.
 
+        Raises:
+            CZDSConnectionError: Raises connection errors.
+
         Returns:
             List[str]: A list CZDS Zone Link urls.
         """
@@ -47,6 +50,9 @@ class CZDS(Base):
         Args:
             link (AnyStr): A CZDS Zone Link URL. Defaults to None.
             threaded (bool): Whether or not to run multi-threaded.
+
+        Raises:
+            CZDSConnectionError: Raises connection errors.
 
         Returns:
             AnyStr or List[Dict[str, str]]: _description_

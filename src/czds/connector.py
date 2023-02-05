@@ -26,16 +26,26 @@ class CZDSConnector(Base):
         """Creates a credential property and retrieves our access token from authenticationself."""
         self.credential: dict = {"username": Base.USERNAME, "password": Base.PASSWORD}
         self.token = self.get_token()
-        
-    def _request(self, url: AnyStr, method: AnyStr = "GET", data: Any = None, headers: Dict[str, str] = None, stream: bool = False) -> Response:
+
+    def _request(
+        self,
+        url: AnyStr,
+        method: AnyStr = "GET",
+        data: Any = None,
+        headers: Dict[str, str] = None,
+        stream: bool = False,
+    ) -> Response:
         """Main method to make all HTTP requests.
 
         Args:
             url (AnyStr): The URL to send the request to.
-            method (AnyStr, optional): The HTTP method to use. Defaults to "GET".
-            data (Any, optional): The data argument provided to requests. Defaults to None.
+            method (AnyStr): The HTTP method to use. Defaults to "GET".
+            data (Any): The data argument provided to requests. Defaults to None.
             headers (Dict[str, str], optional): The headers to use with the request. Defaults to None.
-            stream (bool, optional): Whether or not to stream response content. Defaults to False.
+            stream (bool): Whether or not to stream response content. Defaults to False.
+
+        Raises:
+            CZDSConnectionError: Raises when a connection error occurs.
 
         Returns:
             Response: The requests Response object.
@@ -61,10 +71,7 @@ class CZDSConnector(Base):
             AnyStr: An access token.
         """
         return self._request(
-            method="POST",
-            url=self.AUTH_URL,
-            data=json.dumps(self.credential),
-            headers=self.BASE_HEADERS
+            method="POST", url=self.AUTH_URL, data=json.dumps(self.credential), headers=self.BASE_HEADERS
         ).json()["accessToken"]
 
     def _get(self, url: AnyStr) -> Response:

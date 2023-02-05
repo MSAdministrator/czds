@@ -80,8 +80,8 @@ class Base(metaclass=LoggingBase):
         We identify the source of the logging class by inspecting the calling stack.
 
         Args:
-            message (str): The log value string to output.
-            level (str, optional): The log level. Defaults to "info".
+            message (AnyStr): The log value string to output.
+            level (AnyStr): The log level. Defaults to "info".
         """
         component = None
         parent = inspect.stack()[1][0].f_locals.get("self", None)
