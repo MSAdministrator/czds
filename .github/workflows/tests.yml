@@ -120,6 +120,10 @@ jobs:
           pipx install --pip-args=--constraint=.github/workflows/constraints.txt poetry
           poetry --version
 
+      - name: Run Coverage
+        run: |
+          poetry run coverage run -m pytest
+
       - name: Install Nox
         run: |
           pipx install --pip-args=--constraint=.github/workflows/constraints.txt nox
