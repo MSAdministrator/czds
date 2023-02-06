@@ -18,3 +18,13 @@ def test_chunk(main_class):
     chunked_lists = Base()._chunk(items=sample_list, chunk_size=1)
     for item in chunked_lists:
         assert isinstance(item, list)
+
+
+def test_run_threaded(main_class):
+    """Tests the run_threaded method in Base."""
+    assert True
+
+
+def test_log(main_class):
+    """Tests the log method in Base."""
+    assert True

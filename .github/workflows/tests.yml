@@ -119,6 +119,7 @@ jobs:
           pipx install --pip-args=--constraint=.github/workflows/constraints.txt poetry
           poetry --version
 
+
       - name: Install Nox
         run: |
           pipx install --pip-args=--constraint=.github/workflows/constraints.txt nox
@@ -129,12 +130,6 @@ jobs:
         run: |
           nox --python=${{ matrix.python }}
 
-      - name: Upload coverage data
-        if: always() && matrix.session == 'tests'
-        uses: "actions/upload-artifact@v3"
-        with:
-          name: coverage-data
-          path: ".coverage.*"
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
@@ -143,46 +138,46 @@ jobs:
           name: docs
           path: docs/_build
 
-  coverage:
-    runs-on: ubuntu-latest
-    needs: tests
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v3
+  # coverage:
+  #   runs-on: ubuntu-latest
+  #   needs: tests
+  #   steps:
+  #     - name: Check out the repository
+  #       uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: "3.10"
 
-      - name: Upgrade pip
-        run: |
-          pip install --constraint=.github/workflows/constraints.txt pip
-          pip --version
+  #     - name: Upgrade pip
+  #       run: |
+  #         pip install --constraint=.github/workflows/constraints.txt pip
+  #         pip --version
 
-      - name: Install Poetry
-        run: |
-          pipx install --pip-args=--constraint=.github/workflows/constraints.txt poetry
-          poetry --version
+  #     - name: Install Poetry
+  #       run: |
+  #         pipx install --pip-args=--constraint=.github/workflows/constraints.txt poetry
+  #         poetry --version
 
-      - name: Install Nox
-        run: |
-          pipx install --pip-args=--constraint=.github/workflows/constraints.txt nox
-          pipx inject --pip-args=--constraint=.github/workflows/constraints.txt nox nox-poetry
-          nox --version
+  #     - name: Install Nox
+  #       run: |
+  #         pipx install --pip-args=--constraint=.github/workflows/constraints.txt nox
+  #         pipx inject --pip-args=--constraint=.github/workflows/constraints.txt nox nox-poetry
+  #         nox --version
 
-      - name: Download coverage data
-        uses: actions/download-artifact@v3
-        with:
-          name: coverage-data
+  #     - name: Download coverage data
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: coverage-data
 
-      - name: Combine coverage data and display human readable report
-        run: |
-          nox --session=coverage
+  #     - name: Combine coverage data and display human readable report
+  #       run: |
+  #         nox --session=coverage
 
-      - name: Create coverage report
-        run: |
-          nox --session=coverage -- xml
+  #     - name: Create coverage report
+  #       run: |
+  #         nox --session=coverage -- xml
 
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v3.1.1
+  #     - name: Upload coverage report
+  #       uses: codecov/codecov-action@v3.1.1

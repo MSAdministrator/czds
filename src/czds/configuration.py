@@ -51,7 +51,7 @@ class Configuration:
 class ConfigurationManager(Base):
     """The main class used to manage retreiving and saving configuration files from disk."""
 
-    CONFIG_PATH = "~/.config/sentinel-automation.yml"
+    CONFIG_PATH = "~/.config/czds.yml"
     session = PromptSession()
 
     def __init__(self) -> None:

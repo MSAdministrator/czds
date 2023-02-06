@@ -22,6 +22,7 @@ class Base(metaclass=LoggingBase):
     USERNAME: AnyStr = None
     PASSWORD: AnyStr = None
     SAVE_PATH: AnyStr = None
+    OUTPUT_FORMAT: AnyStr = None
 
     # We create a Connector object and set it to this class property in czds.py
     connection = None
