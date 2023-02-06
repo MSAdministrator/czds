@@ -122,6 +122,7 @@ jobs:
 
       - name: Run Coverage
         run: |
+          poetry run pip install coverage
           poetry run coverage run -m pytest
 
       - name: Install Nox
