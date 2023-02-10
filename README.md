@@ -6,7 +6,8 @@
 [![License](https://img.shields.io/pypi/l/czds)][license]
 
 [![Read the documentation at https://czds.readthedocs.io/](https://img.shields.io/readthedocs/czds/latest.svg?label=Read%20the%20Docs)][read the docs]
-[![Tests](https://github.com/MSAdministrator/czds/workflows/Tests/badge.svg)][tests]
+[![Code Quality & Tests](https://github.com/MSAdministrator/czds/actions/workflows/tests.yml/badge.svg)](https://github.com/MSAdministrator/czds/actions/workflows/tests.yml)
+
 [![Codecov](https://codecov.io/gh/MSAdministrator/czds/branch/main/graph/badge.svg)][codecov]
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
@@ -30,8 +31,18 @@ Each registry operator keeps its zone data in a text file called the Zone File w
 ## Features
 
 - Retrieve Centralized Zone Transfer Files from root DNS servers hosted by ICAAN and other agencies
-- Download one or all of the zone files to your local system/disk
+- Download one or all of the zone files and return data in multiple formats; text, json or a file (default)
 - You can now retrieve zone files using multi-threading
+
+## Roadmap
+
+The following are some of the features I am planning on adding but would love to hear everyones thoughts as well.
+
+- Add ability to search based on domain and/or TLD
+  - This may include using algorithms like Levenshtein distance, confusables/idna characters, etc.
+- Add ability to derive differences between zone files over time
+- Add ability to retrieve other contextual external information like WHOIS
+- Add ability to save/store data into a database
 
 ## Requirements
 
@@ -46,16 +57,76 @@ You can install _CZDS_ via [pip] from [PyPI]:
 $ pip install czds
 ```
 
+If you are using `poetry` (recommended) you can add it to your package using
+
+```console
+poetry add czds
+```
+
+
 ## Usage
 
-Please see the [Command-line Reference] for details.
+Below is the command line reference but you can also use the current version of czds to retrieve the help by typing ```czds --help```.
+
+```console
+NAME
+    czds - Main class for ICAAN CZDS.
+
+SYNOPSIS
+    czds GROUP | VALUE | --username=USERNAME --password=PASSWORD --save_directory=SAVE_DIRECTORY
+
+DESCRIPTION
+    Main class for ICAAN CZDS.
+
+ARGUMENTS
+    USERNAME
+        Type: ~AnyStr
+    PASSWORD
+        Type: ~AnyStr
+    SAVE_DIRECTORY
+        Type: ~AnyStr
+
+GROUPS
+    GROUP is one of the following:
+
+     BASE_HEADERS
+
+     links
+
+VALUES
+    VALUE is one of the following:
+
+     AUTH_URL
+
+     BASE_URL
+
+     OUTPUT_FORMAT
+
+     PASSWORD
+
+     SAVE_PATH
+
+     THREAD_COUNT
+
+     USERNAME
+
+     connection
+```
 
 ## Contributing
 
 Contributions are very welcome.
-To learn more, see the [Contributor Guide].
+To learn more, see the [Contributor Guide](CONTRIBUTING.md).
 
 ## Developmemt
+
+You can clone the repositry and begin development using
+
+```bash
+git clone https://github.com/MSAdministrator/czds.git
+cd czds
+poetry install
+```
 
 If you are using `pyenv` to manage your enviroments you can set a config option in poetry to use the set pyenv version of python by running this:
 
@@ -65,7 +136,7 @@ poetry install
 ```
 ## License
 
-Distributed under the terms of the [MIT license][license],
+Distributed under the terms of the [MIT license][LICENSE.md],
 _CZDS_ is free and open source software.
 
 ## Security
@@ -75,7 +146,7 @@ Security concerns are a top priority for us, please review our [Security Policy]
 ## Issues
 
 If you encounter any problems,
-please [file an issue] along with a detailed description.
+please [file an issue](https://github.com/MSAdministrator/czds/issues/new) along with a detailed description.
 
 ## Credits
 
