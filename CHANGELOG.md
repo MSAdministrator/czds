@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/MSAdministrator/czds/compare/0.1.0...0.1.1) (2023-02-10)
+
+
+### Documentation
+
+* Updating README and license.md ([9312569](https://github.com/MSAdministrator/czds/commit/9312569c58102ee035d9dde9a0d095d631f479a1))
+
 ## 0.1.0 (2023-02-10)
 
 
