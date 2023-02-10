@@ -11,6 +11,8 @@ on:
 jobs:
   labeler:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write # <--- permission granted explicitely
     steps:
       -
         name: Checkout
