@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/MSAdministrator/czds/compare/0.1.1...0.1.2) (2023-02-28)
+
+
+### Bug Fixes
+
+* Fixes [#32](https://github.com/MSAdministrator/czds/issues/32) which will output the correct response when wanting to output a single zone file ([7320ac4](https://github.com/MSAdministrator/czds/commit/7320ac4b4151c192d6bf30217406443576628a57))
+
 ## [0.1.1](https://github.com/MSAdministrator/czds/compare/0.1.0...0.1.1) (2023-02-10)
 
 
