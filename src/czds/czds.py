@@ -68,7 +68,7 @@ class CZDS(Base):
         except CZDSConnectionError as cze:
             raise cze
         if link:
-            return_list.append(self.connection._get(url=link))
+            return_list.append(self.connection.download(zone_file_list=link))
         else:
             if threaded:
                 return self.run_threaded(method=self.connection.download, list_data=self.list_links())
