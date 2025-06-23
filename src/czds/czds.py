@@ -1,4 +1,5 @@
 """Main entrypoint for czds."""
+
 from typing import AnyStr
 from typing import Dict
 from typing import List

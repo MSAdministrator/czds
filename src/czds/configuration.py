@@ -1,4 +1,5 @@
 """Configuration file."""
+
 import json
 import os
 from string import Template

@@ -1,4 +1,5 @@
 """Configuration for the pytest test suite."""
+
 import pytest
 
 from czds import CZDS

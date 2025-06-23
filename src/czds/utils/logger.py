@@ -20,6 +20,7 @@ class MyClass(Base):
 Additionally, there is a CustomFormatter class that will color code the different
 log output streams right within your console.
 """
+
 import logging.config
 import os
 from logging import DEBUG
