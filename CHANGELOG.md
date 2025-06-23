@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.1.3](https://github.com/MSAdministrator/czds/compare/0.1.2...v0.1.3) (2025-06-23)
+
+
+### Bug Fixes
+
+* Bumping poetry version in CI ([2c0f77e](https://github.com/MSAdministrator/czds/commit/2c0f77e988c57f138fc0da81280e9ae30202ee9b))
+* more ([bf665ea](https://github.com/MSAdministrator/czds/commit/bf665eaf82052cba9e6e5c9b10ca86fadc6e3465))
+* Moving to pip from pipx ([50a070d](https://github.com/MSAdministrator/czds/commit/50a070dc8cff8269679678e80cc27384ece22bda))
+* Updating actions ([6468a7a](https://github.com/MSAdministrator/czds/commit/6468a7a5353c2b7cd867cd3b9d03ac4b2a10ff47))
+* Updating actions ([da16d39](https://github.com/MSAdministrator/czds/commit/da16d395a5c9225490af69add94b8837258f2698))
+* Updating caching ([69d4d7b](https://github.com/MSAdministrator/czds/commit/69d4d7b2cba990463e3688323f407c187d95b93d))
+* Updating ci ([51d5720](https://github.com/MSAdministrator/czds/commit/51d57208efdd4d171623aa5b5fcc4ff7e9125488))
+* Updating dependencies ([3fcb468](https://github.com/MSAdministrator/czds/commit/3fcb4684f5ba1ce3984a82209bb5155643ab5b7c))
+* Updating deps ([c441a3f](https://github.com/MSAdministrator/czds/commit/c441a3f6883ce32bbd8aed23716e3975679c18e4))
+* Updating from pre-commit hooks ([c26716b](https://github.com/MSAdministrator/czds/commit/c26716b9c65728f9cc9e6e03d6194f5c88487e9c))
+* updating nox-poetry install ([a8cf5e7](https://github.com/MSAdministrator/czds/commit/a8cf5e77e2395ec2960f0a9ae8a5d1815bc59a96))
+* Updating pip ([ad0772c](https://github.com/MSAdministrator/czds/commit/ad0772c02a19084f0d0d9d536849e98e4621fe63))
+* Updating pip ([d78add2](https://github.com/MSAdministrator/czds/commit/d78add270111b650d6b35cd4a8d58a03c441b4c7))
+* Updating tests ([fec3637](https://github.com/MSAdministrator/czds/commit/fec3637133ce7dc25f6815d29b78dc28a42146ec))
+* Updating virtualenv ([f11a79b](https://github.com/MSAdministrator/czds/commit/f11a79ba1ec01550ff017dd545ed9b4fc19db4aa))
+
 ## [0.1.2](https://github.com/MSAdministrator/czds/compare/0.1.1...0.1.2) (2023-02-28)
 
 
