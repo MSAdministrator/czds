@@ -1,4 +1,5 @@
 """Main connector class."""
+
 import cgi
 import json
 import os

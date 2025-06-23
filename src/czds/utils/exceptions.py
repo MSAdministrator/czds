@@ -1,4 +1,5 @@
 """czds.utils.exceptions."""
+
 from requests.exceptions import HTTPError
 
 

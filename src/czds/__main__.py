@@ -1,4 +1,5 @@
 """Command-line interface."""
+
 import fire
 
 from .czds import CZDS

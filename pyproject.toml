@@ -40,7 +40,7 @@ pre-commit = "^4.2.0"
 [tool.poetry.urls]
 Changelog = "https://github.com/MSAdministrator/czds/releases"
 
-[poetry.group.dev.dependencies]
+[tool.poetry.group.dev.dependencies]
 Pygments = ">=2.10.0"
 black = ">=21.10b0"
 coverage = {extras = ["toml"], version = ">=6.2"}

@@ -1,4 +1,5 @@
 """Contains data models around CZDS."""
+
 from typing import AnyStr
 
 from attrs import define

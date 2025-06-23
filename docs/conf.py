@@ -1,4 +1,5 @@
 """Sphinx configuration."""
+
 project = "CZDS"
 author = "Josh Rickard"
 copyright = "2023, Josh Rickard"

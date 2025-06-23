@@ -3,6 +3,7 @@
 This Base class inherits from our LoggingBase metaclass and gives us
 shared logging across any class inheriting from Base.
 """
+
 import inspect
 import os
 from typing import Any
