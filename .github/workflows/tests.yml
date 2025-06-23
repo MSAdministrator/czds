@@ -59,14 +59,14 @@ jobs:
           result = "${{ runner.os }}-{}-{}-pre-commit".format(python, digest[:8])
 
           print("::set-output name=result::{}".format(result))
-      - name: Restore pre-commit cache
-        uses: actions/cache@v3
-        if: matrix.session == 'pre-commit'
-        with:
-          path: ~/.cache/pre-commit
-          key: ${{ steps.pre-commit-cache.outputs.result }}-${{ hashFiles('.pre-commit-config.yaml') }}
-          restore-keys: |
-            ${{ steps.pre-commit-cache.outputs.result }}-
+      # - name: Restore pre-commit cache
+      #   uses: actions/cache@v3
+      #   if: matrix.session == 'pre-commit'
+      #   with:
+      #     path: ~/.cache/pre-commit
+      #     key: ${{ steps.pre-commit-cache.outputs.result }}-${{ hashFiles('.pre-commit-config.yaml') }}
+      #     restore-keys: |
+      #       ${{ steps.pre-commit-cache.outputs.result }}-
       - name: Run Nox
         run: |
           nox --python=${{ matrix.python }}
@@ -117,7 +117,6 @@ jobs:
           pipx install --pip-args=--constraint=.github/workflows/constraints.txt poetry
           poetry --version
 
-
       - name: Install Nox
         run: |
           pipx install --pip-args=--constraint=.github/workflows/constraints.txt nox
@@ -127,7 +126,6 @@ jobs:
       - name: Run Nox
         run: |
           nox --python=${{ matrix.python }}
-
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
