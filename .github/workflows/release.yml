@@ -11,6 +11,10 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -31,7 +35,10 @@ jobs:
         with:
           poetry-version: 1.4.2
         if: ${{ steps.release.outputs.releases_created }}
-      - name: Publish
+      - name: Build tarball
         run: |
-          poetry publish --build
+          poetry build
+        if: ${{ steps.release.outputs.releases_created }}
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         if: ${{ steps.release.outputs.releases_created }}
