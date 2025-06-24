@@ -14,7 +14,7 @@ class CZDSConnectionError(HTTPError):
             name (str): The name of the error.
             http_error (HTTPError): The HTTP Error from the requests response.
         """
-        from ..base import Base
+        from .base import Base
 
         Base().log(message=f"\n{name} Error Occurred.\nStatus Code: {status_code}\nError: {http_error}\n")
 

@@ -10,7 +10,7 @@ from typing import Any
 from typing import AnyStr
 from typing import List
 
-from .utils.logger import LoggingBase
+from .logger import LoggingBase
 
 
 class Base(metaclass=LoggingBase):
