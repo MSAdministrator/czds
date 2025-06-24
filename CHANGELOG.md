@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/MSAdministrator/czds/compare/v0.1.3...v0.1.4) (2025-06-24)
+
+
+### Bug Fixes
+
+* bumping preminor version ([#70](https://github.com/MSAdministrator/czds/issues/70)) ([be7378c](https://github.com/MSAdministrator/czds/commit/be7378c6a63c3379f14fdfc25916e788940840cb))
+
 ## [0.1.3](https://github.com/MSAdministrator/czds/compare/0.1.2...v0.1.3) (2025-06-23)
 
 
