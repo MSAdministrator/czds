@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/MSAdministrator/czds/compare/v0.1.4...v0.1.5) (2025-06-24)
+
+
+### Bug Fixes
+
+* Updating internal structure ([#72](https://github.com/MSAdministrator/czds/issues/72)) ([b982901](https://github.com/MSAdministrator/czds/commit/b982901a8620d893fa06f557f557e499d8a9d496))
+
 ## [0.1.4](https://github.com/MSAdministrator/czds/compare/v0.1.3...v0.1.4) (2025-06-24)
 
 
