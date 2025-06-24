@@ -1,16 +1,18 @@
+"""Custom logger."""
+
 import logging.config
 from logging import DEBUG
 from logging import FileHandler
 from logging import Formatter
 from logging import LogRecord
-from typing import Any, Dict, Optional
+from typing import Any
+from typing import Dict
+from typing import Optional
 
 
 LOGGING_CONFIG: Dict[str, Any] = {
     "version": 1,
-    "formatters": {
-        "simple": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"}
-    },
+    "formatters": {"simple": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"}},
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
