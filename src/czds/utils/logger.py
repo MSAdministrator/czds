@@ -1,35 +1,33 @@
-"""czds.utils.logger.
-
-The LoggingBase class is used as a metaclass by a Base or Core class.
-
-When you inherit this metaclass all other classes have access to a private attribute
-called `__logger`. You can log to a file and the console using this attribute
-and it's methods.
-
-For example:
-
-class MyClass(Base):
-
-    def __init__(self, value: str) -> None:
-        self.value = value
-        self.__logger.info(f"Value is {value}")
-
-        for log_type in ["info", "warning", "debug", "critical", "error"]:
-            getattr(self.__logger, log_type)(f"Value is {value}")
-
-Additionally, there is a CustomFormatter class that will color code the different
-log output streams right within your console.
-"""
-
 import logging.config
-import os
 from logging import DEBUG
 from logging import FileHandler
 from logging import Formatter
 from logging import LogRecord
-from typing import Optional
+from typing import Any, Dict, Optional
 
-import yaml
+
+LOGGING_CONFIG: Dict[str, Any] = {
+    "version": 1,
+    "formatters": {
+        "simple": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"}
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "level": logging.INFO,
+        }
+    },
+    "loggers": {
+        "my_logger": {
+            "handlers": ["console"],
+            "level": logging.INFO,
+            "propagate": False,
+        }
+    },
+    "root": {"handlers": ["console"], "level": logging.WARNING},
+    "disable_existing_loggers": False,
+}
 
 
 class CustomFormatter(Formatter):
@@ -64,7 +62,13 @@ class CustomFormatter(Formatter):
 class DebugFileHandler(FileHandler):
     """DebugFileHander."""
 
-    def __init__(self, filename: str, mode: str = "a", encoding: Optional[str] = None, delay: bool = False) -> None:
+    def __init__(
+        self,
+        filename: str,
+        mode: str = "a",
+        encoding: Optional[str] = None,
+        delay: bool = False,
+    ) -> None:
         """Used to debug logging.
 
         Args:
@@ -88,8 +92,7 @@ class LoggingBase(type):
     def __init__(cls, *args: str) -> None:
         """Logging base metaclass."""
         super().__init__(*args)
-        cls.setup_logging()
-
+        logging.config.dictConfig(config=LOGGING_CONFIG)
         # Explicit name mangling
         logger_attribute_name = "_" + cls.__name__ + "__logger"
 
@@ -97,21 +100,3 @@ class LoggingBase(type):
         logger_name = ".".join([c.__name__ for c in cls.mro()[-2::-1]])
 
         setattr(cls, logger_attribute_name, logging.getLogger(logger_name))
-
-    def setup_logging(
-        cls,
-        default_path: str = "./src/czds/data/logging.yml",
-        default_level: int = logging.INFO,
-        env_key: str = "LOG_CFG",
-    ) -> None:
-        """Setup logging configuration."""
-        path = os.path.abspath(os.path.expanduser(os.path.expandvars(default_path)))
-        value = os.getenv(env_key, None)
-        if value:
-            path = value
-        if os.path.exists(os.path.abspath(path)):
-            with open(path) as f:
-                config = yaml.safe_load(f.read())
-            logging.config.dictConfig(config)
-        else:
-            logging.basicConfig(level=default_level)

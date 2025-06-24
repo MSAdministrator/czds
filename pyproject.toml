@@ -4,9 +4,6 @@ version = "0.1.3"
 packages = [
     { include = "czds", from = "src" }
 ]
-include = [
-    "src/czds/data/logging.yml"
-]
 description = "CZDS"
 authors = ["Josh Rickard <rickardja@live.com>"]
 maintainers = ["Josh Rickard <rickardja@live.com>"]
