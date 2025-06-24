@@ -6,7 +6,7 @@ from typing import List
 
 from .base import Base
 from .connector import CZDSConnector
-from .utils.exceptions import CZDSConnectionError
+from .exceptions import CZDSConnectionError
 
 
 class CZDS(Base):

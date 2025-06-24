@@ -14,8 +14,8 @@ from requests import Session
 from requests.exceptions import HTTPError
 
 from .base import Base
-from .utils.exceptions import CZDSConnectionError
-from .utils.exceptions import UnsupportedTypeError
+from .exceptions import CZDSConnectionError
+from .exceptions import UnsupportedTypeError
 
 
 class CZDSConnector(Base):
